@@ -81,9 +81,9 @@ set(PostgreSQL_LIBRARY_PATH_DESCRIPTION "top-level directory containing the Post
 set(PostgreSQL_LIBRARY_DIR_MESSAGE "Set the PostgreSQL_LIBRARY_DIR cmake cache entry to the ${PostgreSQL_LIBRARY_PATH_DESCRIPTION}")
 set(PostgreSQL_ROOT_DIR_MESSAGE "Set the PostgreSQL_ROOT system variable to where PostgreSQL is found on the machine E.g C:/Program Files/PostgreSQL/8.4")
 
-
+set(PostgreSQL_INCLUDE_DIR "/usr/include/postgresql/10/server")
 set(PostgreSQL_KNOWN_VERSIONS ${PostgreSQL_ADDITIONAL_VERSIONS}
-    "9.1" "9.0" "8.4" "8.3" "8.2" "8.1" "8.0")
+    "9.1" "9.0" "8.4" "8.3" "8.2" "8.1" "8.0" "10.6")
 
 # Define additional search paths for root directories.
 if ( WIN32 )
@@ -108,6 +108,7 @@ find_path(PostgreSQL_INCLUDE_DIR
   PATH_SUFFIXES
     pgsql
     postgresql
+    postgresql/10
     include
   # Help the user find it if we cannot.
   DOC "The ${PostgreSQL_INCLUDE_DIR_MESSAGE}"
@@ -122,6 +123,7 @@ find_path(PostgreSQL_TYPE_INCLUDE_DIR
     postgresql
     pgsql/server
     postgresql/server
+    postgresql/10
     include/server
   # Help the user find it if we cannot.
   DOC "The ${PostgreSQL_INCLUDE_DIR_MESSAGE}"
@@ -165,7 +167,7 @@ if (PostgreSQL_INCLUDE_DIR)
 endif()
 
 # Did we find anything?
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(PostgreSQL
                                   REQUIRED_VARS PostgreSQL_LIBRARY PostgreSQL_INCLUDE_DIR PostgreSQL_TYPE_INCLUDE_DIR
                                   VERSION_VAR PostgreSQL_VERSION_STRING)
