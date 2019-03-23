@@ -123,7 +123,7 @@ find_path(PostgreSQL_TYPE_INCLUDE_DIR
     postgresql
     pgsql/server
     postgresql/server
-    postgresql/10
+    postgresql/10/server
     include/server
   # Help the user find it if we cannot.
   DOC "The ${PostgreSQL_INCLUDE_DIR_MESSAGE}"
